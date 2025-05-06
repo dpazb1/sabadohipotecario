@@ -1078,6 +1078,7 @@ input:-webkit-autofill:active{
     padding-bottom: 16px;
     margin: 6px auto;
     max-width: 80vw;
+    max-height: 60vh;
   }
 
   .phone-input-container {
