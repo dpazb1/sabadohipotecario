@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #4a3b89; /* Morado principal para textos, bordes y destacados */
-  --primary-gradient-start: #a18cd1; /* Inicio del gradiente para scrollbar/thumbs */
-  --primary-gradient-end: #6d5bba;   /* Fin del gradiente para scrollbar/thumbs */
+  --primary-color: #000000; /* Morado principal para textos, bordes y destacados */
+  --primary-gradient-start: #8f8f8f; /* Inicio del gradiente para scrollbar/thumbs */
+  --primary-gradient-end: #434141;   /* Fin del gradiente para scrollbar/thumbs */
   --text-color: #333333; /* Color principal de texto */
   --light-gray: #f5f5f5; /* Fondos claros */
   --dark-gray: #666666; /* Texto secundario */
@@ -12,14 +12,14 @@
   --scrollbar-bg: rgba(255, 255, 255, 0.2); /* Fondo del scrollbar */
   --scrollbar-thumb: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%); /* Gradiente del thumb */
   --scrollbar-thumb-hover: linear-gradient(135deg, var(--primary-gradient-end) 0%, var(--primary-gradient-start) 100%); /* Gradiente hover del thumb */
-  --purple-hover: #5c4ba8; /* Morado hover */
+  --hover: #aa3b3b; /* Morado hover */
   --danger: #e74c3c; /* Rojo para errores */
   --danger-alt: #ff4444; /* Rojo alternativo */
   --input-border: #ddd; /* Borde de inputs */
   --input-border-light: #eee; /* Borde claro */
-  --accent: #7263ac; /* Morado acento */
-  --secondary: #e18419; /* Color secundario */
-  --secondary-hover: #b8690f; /* Color secundario hover */
+  --accent: #be1521; /* Color acento */
+  --secondary: #be1521; /* Color secundario */
+  --secondary-hover: #d30f1c; /* Color secundario hover */
 }
 
 /* ==============================
@@ -78,7 +78,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0);
   z-index: 2;
 }
 
@@ -137,12 +137,12 @@ body {
 }
 
 .form-container::-webkit-scrollbar-thumb {
-  background: rgba(74, 59, 137, 0.6);
+  background: rgba(var(--secondary), 0.6);
   border-radius: 3px;
 }
 
 .form-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(92, 75, 168, 0.8);
+  background: rgba(var(--hover), 0.8);
 }
 
 /* ==============================
@@ -298,12 +298,12 @@ body {
 }
 
 .select-content::-webkit-scrollbar-thumb {
-  background: rgba(74, 59, 137, 0.6);
+  background: rgba(var(--secondary), 0.6);
   border-radius: 3px;
 }
 
 .select-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(92, 75, 168, 0.8);
+  background: rgba(var(--hover), 0.8);
 }
 
 .select-wrapper.active .select-content {
@@ -383,7 +383,7 @@ body {
   min-height: 20px;
   max-width: 20px;
   max-height: 20px;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--secondary);
   border-radius: 4px;
   margin-top: 0;
   position: relative;
@@ -393,7 +393,7 @@ body {
 }
 
 .checkbox-group input[type="checkbox"]:checked {
-  background-color: var(--accent);
+  background-color: var(--secondary);
 }
 
 .checkbox-group input[type="checkbox"]:checked::after {
@@ -426,7 +426,7 @@ bottom: 20px;
    ============================== */
 
 .success-message {
-  background-color: var(--accent);
+  background-color: var(--secondary);
   color: var(--white);
   padding: 15px;
   border-radius: 4px;
@@ -468,8 +468,8 @@ bottom: 20px;
 
 .form-control:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(var(--hover), 0.1);
 }
 
 .form-group .select-wrapper {
@@ -496,8 +496,8 @@ bottom: 20px;
 
 .select-wrapper .select-btn:hover,
 .select-wrapper.active .select-btn {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.1px var(--secondary);
 }
 
 .select-wrapper .select-content {
@@ -528,12 +528,19 @@ bottom: 20px;
   color: var(--white);
 }
 
-.select-wrapper .option:hover {
-  background-color: rgba(74, 59, 137, 0.1);
+.select-wrapper .option:hover,
+.phone-prefix-wrapper .option:hover,
+#project-select .option:hover,
+#room-type-select .option:hover {
+  background-color: rgba(190, 21, 33, 0.1);
+  color: var(--secondary);
 }
 
-.select-wrapper .option.selected {
-  background-color: rgba(74, 59, 137, 0.85);
+.select-wrapper .option.selected,
+.phone-prefix-wrapper .option.selected,
+#project-select .option.selected,
+#room-type-select .option.selected {
+  background-color: var(--secondary);
   color: var(--white);
   font-weight: 100;
 }
@@ -559,15 +566,15 @@ bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 14px;
-  box-shadow: 0 2px 4px rgba(114, 99, 172, 0.2);
+  box-shadow: 0 2px 4px rgba(var(--hover), 0.2);
   margin-top: 5px;
   margin-bottom: 20px;
 }
 
 .btn-submit:hover {
-  background-color: var(--secondary-hover);
+  background-color: var(--hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(114, 99, 172, 0.3);
+  box-shadow: 0 4px 8px rgba(var(--hover), 0.3);
 }
 
 .legal-text {
@@ -632,11 +639,12 @@ bottom: 20px;
 }
 
 .select-wrapper .option:hover {
-  background-color: rgba(74, 59, 137, 0.3);
+  background-color: var(--hover);
+  color: var(--white);
 }
 
 .select-wrapper .option.selected {
-  background-color: rgba(74, 59, 137, 0.85);
+  background-color: var(--secondary);
   color: var(--white);
   font-weight: 100;
 }
@@ -648,82 +656,6 @@ bottom: 20px;
 .bottom-spacer {
   height: 0;
   width: 100%;
-}
-
-/* ==============================
-   Media queries y responsividad
-   ============================== */
-
-@media (max-width: 480px) {
-  html, body {
-    height: 100%;
-    min-height: 100%;
-    overflow: hidden; /* Prevent page scroll, only form scrolls */
-  }
-  .main-section {
-    position: fixed; 
-    min-height: 100vh;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-position: right top;
-    background-size: cover;
-    z-index: 1;
-  }
-  .container {
-    min-height: 100vh;
-    height: 100vh;
-    display: block;
-    overflow: visible;
-  }
-  .form-container {
-    padding-bottom: 16px;
-    margin: 6px auto;
-  }
-
-  .phone-input-container {
-    flex-direction: row;
-    height: 42.5px;
-    gap: 10px;
-  }
-
-  .phone-prefix-wrapper {
-    width: 85px;
-    height: 100%;
-  }
-
-  .phone-input-container .form-control {
-    flex: 1;
-    height: 100%;
-  }
-
-  input, select, textarea {
-    font-size: 16px;
-  }
-
-  .form-title {
-    font-family: 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 300 !important;
-    font-size: 22px;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .checkbox-group {
-    align-items: flex-start;
-  }
-  .checkbox-group input[type="checkbox"] {
-    margin-top: 0.3em;
-  }
-  .checkbox-group label {
-    margin-top: 0;
-    display: inline;
-  }
 }
 
 /* ==============================
@@ -756,8 +688,8 @@ bottom: 20px;
 }
 
 .search-input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(var(--hover), 0.1);
 }
 
 .search-input::placeholder {
@@ -837,13 +769,13 @@ bottom: 20px;
 }
 
 .phone-prefix-wrapper .select-btn:hover {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.1px var(--secondary);
 }
 
 .phone-prefix-wrapper.active .select-btn {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 0.1px var(--secondary);
 }
 
 .phone-prefix-wrapper .select-btn::after {
@@ -896,11 +828,12 @@ bottom: 20px;
 }
 
 .phone-prefix-wrapper .option:hover {
-  background-color: rgba(74, 59, 137, 0.3);
+  background-color: var(--hover);
+  color: var(--white);
 }
 
 .phone-prefix-wrapper .option.selected {
-  background-color: rgba(74, 59, 137, 0.85);
+  background-color: var(--secondary);
   color: var(--white);
   font-weight: 10;
 }
@@ -951,8 +884,8 @@ bottom: 20px;
 .select-wrapper.active .select-btn,
 .phone-prefix-wrapper .select-btn:hover,
 .phone-prefix-wrapper.active .select-btn {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.1px var(--secondary);
 }
 
 /* ==============================
@@ -973,8 +906,8 @@ input:-webkit-autofill:active{
 #project-select.active .select-btn,
 #room-type-select .select-btn:hover,
 #room-type-select.active .select-btn {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.1px var(--secondary);
 }
 
 /* ==============================
@@ -1019,6 +952,11 @@ input:-webkit-autofill:active{
     height: auto;
     padding-top: 0;
   }
+
+  .main-section {
+    margin-left: 0px;
+  }
+
   .promo-mobile-text {
     padding: 10px 10px 10px 10px;
     display: block;
@@ -1065,7 +1003,7 @@ input:-webkit-autofill:active{
   }
   
   .main-section::before {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0);
   }
   
   .form-container {
@@ -1108,6 +1046,79 @@ input:-webkit-autofill:active{
   .form-container {
     max-width: 70vw;
     max-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden; /* Prevent page scroll, only form scrolls */
+  }
+  .main-section {
+    position: fixed; 
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: right top;
+    background-size: cover;
+    z-index: 1;
+  }
+  .container {
+    min-height: 100vh;
+    height: 100vh;
+    display: block;
+    overflow: visible;
+  }
+  .form-container {
+    padding-bottom: 16px;
+    margin: 6px auto;
+    max-width: 80vw;
+  }
+
+  .phone-input-container {
+    flex-direction: row;
+    height: 42.5px;
+    gap: 10px;
+  }
+
+  .phone-prefix-wrapper {
+    width: 85px;
+    height: 100%;
+  }
+
+  .phone-input-container .form-control {
+    flex: 1;
+    height: 100%;
+  }
+
+  input, select, textarea {
+    font-size: 16px;
+  }
+
+  .form-title {
+    font-family: 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300 !important;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .checkbox-group {
+    align-items: flex-start;
+  }
+  .checkbox-group input[type="checkbox"] {
+    margin-top: 0.3em;
+  }
+  .checkbox-group label {
+    margin-top: 0;
+    display: inline;
   }
 }
 
