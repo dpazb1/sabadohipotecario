@@ -1,25 +1,110 @@
 :root {
-  --primary-color: #000000; /* Morado principal para textos, bordes y destacados */
-  --primary-gradient-start: #8f8f8f; /* Inicio del gradiente para scrollbar/thumbs */
-  --primary-gradient-end: #434141;   /* Fin del gradiente para scrollbar/thumbs */
-  --text-color: #333333; /* Color principal de texto */
-  --light-gray: #f5f5f5; /* Fondos claros */
-  --dark-gray: #666666; /* Texto secundario */
-  --white: #ffffff; /* Fondos blancos */
-  --form-bg: rgba(255,255,255,0.75); /* Fondo flotante del formulario */
-  --form-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra del formulario */
-  --form-shadow-float: 0 8px 32px rgba(74,59,137,0.18), 0 1.5px 8px rgba(74,59,137,0.10); /* Sombra flotante */
-  --scrollbar-bg: rgba(255, 255, 255, 0.2); /* Fondo del scrollbar */
-  --scrollbar-thumb: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%); /* Gradiente del thumb */
-  --scrollbar-thumb-hover: linear-gradient(135deg, var(--primary-gradient-end) 0%, var(--primary-gradient-start) 100%); /* Gradiente hover del thumb */
-  --hover: #aa3b3b; /* Morado hover */
-  --danger: #e74c3c; /* Rojo para errores */
-  --danger-alt: #ff4444; /* Rojo alternativo */
-  --input-border: #ddd; /* Borde de inputs */
-  --input-border-light: #eee; /* Borde claro */
-  --accent: #be1521; /* Color acento */
-  --secondary: #be1521; /* Color secundario */
-  --secondary-hover: #d30f1c; /* Color secundario hover */
+  /* Color negro principal usado para:
+     - Texto en botones de selección
+     - Texto en controles de formulario
+     - Texto en opciones de dropdown
+     - Texto en títulos de formulario
+     - Texto en etiquetas de proyectos seleccionados
+     - Texto en flechas de dropdown */
+  --primary-color: #000000;
+
+  /* Gradiente para scrollbar:
+     - Color inicial del gradiente para el thumb del scrollbar
+     - Color final del gradiente para el thumb del scrollbar */
+  --primary-gradient-start: #8f8f8f;
+  --primary-gradient-end: #434141;
+
+  /* Color de texto base para el cuerpo de la página */
+  --text-color: #333333;
+
+  /* Color gris claro usado para fondos */
+  --light-gray: #f5f5f5;
+
+  /* Color gris oscuro usado para:
+     - Texto secundario
+     - Texto en opciones de dropdown
+     - Texto en etiquetas de checkbox */
+  --dark-gray: #666666;
+
+  /* Color blanco usado para:
+     - Fondo del cuerpo
+     - Fondo de controles de formulario
+     - Fondo de botones de selección
+     - Fondo de contenido de dropdown
+     - Texto en opciones seleccionadas
+     - Texto en etiquetas de proyectos seleccionados
+     - Fondo del checkmark de checkbox
+     - Fondo del contenedor de búsqueda
+     - Fondo de inputs con autofill */
+  --white: #ffffff;
+
+  /* Fondo semi-transparente usado para:
+     - Fondo del contenedor del formulario
+     - Fondo del contenido de dropdown */
+  --form-bg: rgba(255,255,255,0.75);
+
+  /* Sombra del formulario */
+  --form-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+  /* Sombra flotante para elementos */
+  --form-shadow-float: 0 8px 32px rgba(74,59,137,0.18), 0 1.5px 8px rgba(74,59,137,0.10);
+
+  /* Fondo del scrollbar */
+  --scrollbar-bg: rgba(255, 255, 255, 0.2);
+
+  /* Gradiente del thumb del scrollbar */
+  --scrollbar-thumb: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+
+  /* Gradiente hover del thumb del scrollbar */
+  --scrollbar-thumb-hover: linear-gradient(135deg, var(--primary-gradient-end) 0%, var(--primary-gradient-start) 100%);
+
+  /* Color rojo hover usado para:
+     - Estado hover de botones
+     - Estado hover de opciones de dropdown
+     - Color de sombra de elementos del formulario
+     - Color hover del thumb del scrollbar */
+  --hover: #aa3b3b;
+
+  /* Color rojo para errores usado para:
+     - Texto de mensajes de error
+     - Color de borde en estado de error
+     - Color de fondo en estado de error */
+  --danger: #e74c3c;
+
+  /* Color rojo alternativo para errores */
+  --danger-alt: #ff4444;
+
+  /* Color de borde de inputs usado para:
+     - Bordes de controles de formulario
+     - Bordes de botones de selección
+     - Bordes de contenido de dropdown
+     - Bordes de input de búsqueda */
+  --input-border: #ddd;
+
+  /* Color de borde claro usado para:
+     - Borde del contenedor de búsqueda */
+  --input-border-light: #eee;
+
+  /* Color de acento rojo usado para elementos destacados */
+  --accent: #be1521;
+
+  /* Color secundario rojo usado para:
+     - Fondo del botón de envío
+     - Fondo de opciones de dropdown seleccionadas
+     - Color de borde de elementos de formulario enfocados
+     - Texto en spans de títulos de formulario
+     - Texto en spans de texto promocional móvil
+     - Fondo de mensaje de éxito
+     - Borde de checkboxes
+     - Fondo de checkboxes marcados
+     - Color de sombra de elementos del formulario
+     - Estado hover del botón de envío
+     - Estado hover de opciones de dropdown
+     - Texto de asteriscos */
+  --secondary: #be1521;
+
+  /* Color hover del secundario */
+  --secondary-hover: #d30f1c;
 }
 
 /* ==============================
