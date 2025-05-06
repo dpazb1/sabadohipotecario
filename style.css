@@ -1,0 +1,1130 @@
+:root {
+  --primary-color: #4a3b89; /* Morado principal para textos, bordes y destacados */
+  --primary-gradient-start: #a18cd1; /* Inicio del gradiente para scrollbar/thumbs */
+  --primary-gradient-end: #6d5bba;   /* Fin del gradiente para scrollbar/thumbs */
+  --text-color: #333333; /* Color principal de texto */
+  --light-gray: #f5f5f5; /* Fondos claros */
+  --dark-gray: #666666; /* Texto secundario */
+  --white: #ffffff; /* Fondos blancos */
+  --form-bg: rgba(255,255,255,0.75); /* Fondo flotante del formulario */
+  --form-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra del formulario */
+  --form-shadow-float: 0 8px 32px rgba(74,59,137,0.18), 0 1.5px 8px rgba(74,59,137,0.10); /* Sombra flotante */
+  --scrollbar-bg: rgba(255, 255, 255, 0.2); /* Fondo del scrollbar */
+  --scrollbar-thumb: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%); /* Gradiente del thumb */
+  --scrollbar-thumb-hover: linear-gradient(135deg, var(--primary-gradient-end) 0%, var(--primary-gradient-start) 100%); /* Gradiente hover del thumb */
+  --purple-hover: #5c4ba8; /* Morado hover */
+  --danger: #e74c3c; /* Rojo para errores */
+  --danger-alt: #ff4444; /* Rojo alternativo */
+  --input-border: #ddd; /* Borde de inputs */
+  --input-border-light: #eee; /* Borde claro */
+  --accent: #7263ac; /* Morado acento */
+  --secondary: #e18419; /* Color secundario */
+  --secondary-hover: #b8690f; /* Color secundario hover */
+}
+
+/* ==============================
+   Reset y estilos base
+   ============================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  font-weight: 300 !important;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ==============================
+   Fondo principal y sección principal
+   ============================== */
+
+.main-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('bg.png') right center/cover no-repeat;
+  background-color: transparent;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.main-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.main-content {
+  position: relative;
+  z-index: 3;
+  width: 95%;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.footer-logo-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ==============================
+   Contenedor del formulario flotante
+   ============================== */
+
+.form-container {
+  background-color: var(--form-bg);
+  box-shadow: var(--form-shadow);
+  padding: 25px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 0;
+  max-height: 70vh;
+  min-height: 320px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+  margin: 20px;
+  position: relative;
+  z-index: 4;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-gradient-start) var(--scrollbar-bg, #e5e5f7);
+}
+
+/* Scrollbar personalizado para el formulario */
+
+.form-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.form-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background: rgba(74, 59, 137, 0.6);
+  border-radius: 3px;
+}
+
+.form-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(92, 75, 168, 0.8);
+}
+
+/* ==============================
+   Título del formulario
+   ============================== */
+
+.form-title {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.form-title span {
+  color: var(--secondary);
+}
+
+.promo-mobile-text span {
+  color: var(--secondary);
+}
+
+.form-title.success {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+/* ==============================
+   Grupos de campos del formulario
+   ============================== */
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+  height: 42.5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group:has(.selected-projects:not(:empty)) {
+  height: auto !important;
+  min-height: 42.5px;
+}
+
+.form-group:not(:has(.select-wrapper)) {
+  height: 42.5px;
+}
+
+/* ==============================
+   Dropdowns personalizados (proyectos, tipos, prefijo)
+   ============================== */
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.select-btn {
+  height: 42.5px !important;
+  min-height: 42.5px !important;
+  flex-shrink: 0 !important;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--white) !important;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  font-size: 14px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-weight: 300 !important;
+}
+
+.select-btn .select-btn-text {
+  opacity: 0.8;
+}
+
+.selected-projects {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 8px;
+  height: auto !important;
+  min-height: 42.5px;
+  position: relative;
+  z-index: 1 !important;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.form-group:has(.selected-projects:not(:empty)) .select-btn {
+  height: 42.5px;
+  min-height: 42.5px;
+  flex-shrink: 0;
+}
+
+.selected-project {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.8;
+  white-space: nowrap;
+  font-weight: 300 !important;
+}
+
+.selected-project .remove {
+  margin-left: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==============================
+   Contenido del dropdown (opciones)
+   ============================== */
+
+.select-content {
+  position: absolute;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: scroll;
+  display: none;
+  z-index: 100;
+  box-shadow: var(--form-shadow);
+  margin-top: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-gradient-start) var(--scrollbar-bg, #e5e5f7);
+  -ms-overflow-style: auto;
+}
+
+.select-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.select-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.select-content::-webkit-scrollbar-thumb {
+  background: rgba(74, 59, 137, 0.6);
+  border-radius: 3px;
+}
+
+.select-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(92, 75, 168, 0.8);
+}
+
+.select-wrapper.active .select-content {
+  display: block;
+}
+
+/* ==============================
+   Estados de error en el formulario
+   ============================== */
+
+.form-group.error {
+  margin-bottom: 22px;
+}
+
+.form-group.error .select-btn {
+  background-color: var(--white) !important;
+}
+
+.error-message {
+  display: none;
+  color: var(--danger);
+  font-size: 10px;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  font-weight: 300;
+  z-index: 1;
+  line-height: 1;
+}
+
+.form-group.error .error-message,
+.checkbox-group.error .error-message {
+  display: block;
+}
+
+/* ==============================
+   Checkbox personalizado
+   ============================== */
+
+.checkbox-group {
+  padding-top: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+.checkbox-group .error-message {
+  display: none;
+  color: var(--danger);
+  font-size: 10px;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  font-weight: 300;
+  z-index: 1;
+  line-height: 1;
+}
+
+.checkbox-group.error {
+  margin-bottom: 22px;
+}
+
+.checkbox-group.error .error-message {
+  display: block;
+}
+
+.checkbox-group input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  aspect-ratio: 1/1;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  margin-top: 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 11;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: var(--accent);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 10px;
+  height: 5px;
+  border: solid var(--white);
+  border-width: 0 0 2px 2px;
+  margin-top: -1px;
+}
+
+.checkbox-group label {
+  font-size: 12px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  font-weight: 300 !important;
+  vertical-align: middle;
+}
+
+.error-auth {
+bottom: 20px;
+}
+
+/* ==============================
+   Mensaje de éxito
+   ============================== */
+
+.success-message {
+  background-color: var(--accent);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 300;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   Inputs del formulario
+   ============================== */
+
+.form-group label {
+  display: none;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--white) !important;
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+  font-weight: 300 !important;
+}
+
+.form-control::placeholder {
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+.form-group .select-wrapper {
+  height: 42.5px;
+  position: relative;
+}
+
+.form-group .select-wrapper .select-btn {
+  width: 100%;
+  height: 42.5px;
+  padding: 0 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--white) !important;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  font-size: 14px;
+  color: var(--primary-color);
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper .select-btn:hover,
+.select-wrapper.active .select-btn {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+.select-wrapper .select-content {
+  background-color: var(--form-bg);
+  border: 1px solid var(--input-border);
+}
+
+.select-wrapper .option {
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: var(--dark-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300 !important;
+}
+
+.select-wrapper .option .comuna {
+  color: var(--primary-color);
+  font-size: 12px;
+  opacity: 0.8;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.select-wrapper .option.selected .comuna {
+  color: var(--white);
+}
+
+.select-wrapper .option:hover {
+  background-color: rgba(74, 59, 137, 0.1);
+}
+
+.select-wrapper .option.selected {
+  background-color: rgba(74, 59, 137, 0.85);
+  color: var(--white);
+  font-weight: 100;
+}
+
+.select-wrapper .option.selected::after {
+  display: none;
+}
+
+/* ==============================
+   Botón de envío
+   ============================== */
+
+.btn-submit {
+  background-color: var(--secondary);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(114, 99, 172, 0.2);
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.btn-submit:hover {
+  background-color: var(--secondary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(114, 99, 172, 0.3);
+}
+
+.legal-text {
+  font-size: 10px;
+  font-weight: 300 !important;
+}
+
+.footer-logo {
+  margin-top: 15px;
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ==============================
+   Flecha de los dropdowns
+   ============================== */
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper .select-btn::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.select-wrapper .select-content {
+  position: absolute;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: scroll;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.select-wrapper.active .select-content {
+  display: block;
+}
+
+.select-wrapper .options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.select-wrapper .option {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-wrapper .option:hover {
+  background-color: rgba(74, 59, 137, 0.3);
+}
+
+.select-wrapper .option.selected {
+  background-color: rgba(74, 59, 137, 0.85);
+  color: var(--white);
+  font-weight: 100;
+}
+
+.select-wrapper .option.selected::after {
+  display: none;
+}
+
+.bottom-spacer {
+  height: 0;
+  width: 100%;
+}
+
+/* ==============================
+   Media queries y responsividad
+   ============================== */
+
+@media (max-width: 480px) {
+  html, body {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden; /* Prevent page scroll, only form scrolls */
+  }
+  .main-section {
+    position: fixed; 
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: right top;
+    background-size: cover;
+    z-index: 1;
+  }
+  .container {
+    min-height: 100vh;
+    height: 100vh;
+    display: block;
+    overflow: visible;
+  }
+  .form-container {
+    padding-bottom: 16px;
+    margin: 6px auto;
+  }
+
+  .phone-input-container {
+    flex-direction: row;
+    height: 42.5px;
+    gap: 10px;
+  }
+
+  .phone-prefix-wrapper {
+    width: 85px;
+    height: 100%;
+  }
+
+  .phone-input-container .form-control {
+    flex: 1;
+    height: 100%;
+  }
+
+  input, select, textarea {
+    font-size: 16px;
+  }
+
+  .form-title {
+    font-family: 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300 !important;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .checkbox-group {
+    align-items: flex-start;
+  }
+  .checkbox-group input[type="checkbox"] {
+    margin-top: 0.3em;
+  }
+  .checkbox-group label {
+    margin-top: 0;
+    display: inline;
+  }
+}
+
+/* ==============================
+   Contenedor de búsqueda en dropdowns
+   ============================== */
+.search-container {
+  padding: 10px;
+  border-bottom: 1px solid var(--input-border-light);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1;
+}
+
+/* ==============================
+   Input de búsqueda en dropdowns
+   ============================== */
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+.select-content {
+  position: absolute;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: scroll;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.select-btn {
+  color: var(--primary-color);
+}
+
+/* ==============================
+   Contenedor de input telefónico
+   ============================== */
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 42.5px;
+  margin-bottom: 0;
+}
+
+/* ==============================
+   Wrapper del prefijo telefónico
+   ============================== */
+.phone-prefix-wrapper {
+  width: 85px;
+  min-width: 70px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.phone-input-container .form-control {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-placeholder-wrapper {
+  width: 100%;
+  display: flex;
+  flex: 1 1 0%;
+}
+
+.phone-prefix-wrapper .select-btn {
+  width: 100%;
+  height: 100%;
+  padding: 0 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--white) !important;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  font-size: 14px;
+  color: var(--primary-color);
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.phone-prefix-wrapper .select-btn:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+.phone-prefix-wrapper.active .select-btn {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+.phone-prefix-wrapper .select-btn::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--primary-color);
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.phone-prefix-wrapper .select-btn .select-btn-text {
+  opacity: 0.8;
+  color: var(--primary-color);
+  font-weight: 300;
+}
+
+.phone-prefix-wrapper .select-content {
+  position: absolute;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: scroll;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 4px;
+}
+
+.phone-prefix-wrapper.active .select-content {
+  display: block;
+}
+
+.phone-prefix-wrapper .options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phone-prefix-wrapper .option {
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: var(--dark-gray);
+}
+
+.phone-prefix-wrapper .option:hover {
+  background-color: rgba(74, 59, 137, 0.3);
+}
+
+.phone-prefix-wrapper .option.selected {
+  background-color: rgba(74, 59, 137, 0.85);
+  color: var(--white);
+  font-weight: 10;
+}
+
+.select-wrapper.error .select-btn {
+  border-color: var(--danger);
+  background-color: rgba(231, 76, 60, 0.05);
+}
+
+.select-wrapper.error .error-message {
+  display: block;
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 2px;
+}
+
+.form-group .select-wrapper {
+  height: 100%;
+}
+
+.form-group .select-wrapper .select-btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper .select-btn,
+.phone-prefix-wrapper .select-btn {
+    width: 100%;
+    height: 42.5px;
+    padding: 0 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: var(--white) !important;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    font-size: 14px;
+    color: var(--primary-color);
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.select-wrapper .select-btn:hover,
+.select-wrapper.active .select-btn,
+.phone-prefix-wrapper .select-btn:hover,
+.phone-prefix-wrapper.active .select-btn {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+/* ==============================
+   Estilos para autofill de inputs
+   ============================== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px var(--white);
+}
+
+/* ==============================
+   Hover states para selectores específicos
+   ============================== */
+#project-select .select-btn:hover,
+#project-select.active .select-btn,
+#room-type-select .select-btn:hover,
+#room-type-select.active .select-btn {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 59, 137, 0.1);
+}
+
+/* ==============================
+   Hover state para comuna en opciones
+   ============================== */
+.select-wrapper .option:hover .comuna {
+  opacity: 1;
+}
+
+/* ==============================
+   Estados de error para selectores
+   ============================== */
+.form-group.error .select-btn,
+.select-wrapper.error .select-btn,
+.form-group.error .form-control {
+  background-color: var(--white) !important;
+}
+
+/* ==============================
+   Texto promocional móvil
+   ============================== */
+.promo-mobile-text {
+  display: none;
+  padding: 10px 10px 0 10px;
+  margin-top: 80px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   Media queries para tablets y móviles
+   ============================== */
+@media (max-width: 1050px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 0;
+  }
+  .promo-mobile-text {
+    padding: 10px 10px 10px 10px;
+    display: block;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    box-sizing: border-box;
+  }
+  .container {
+    gap: 20px;
+  }
+  
+  .main-content {
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .footer-logo-container {
+    position: fixed;
+    left: 50%;
+    top: 2%;
+    bottom: auto;
+    transform: translateX(-50%);
+    margin: 0;
+    width: fit-content;
+    display: block;
+    z-index: 10;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: 0;
+    margin-top: 0;
+  }
+  
+  .main-section {
+    background-position: right center;
+    background-size: cover;
+  }
+  
+  .main-section::before {
+    background: rgba(0, 0, 0, 0.15);
+  }
+  
+  .form-container {
+    max-width: 45vw;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 825px) {
+  .form-container {
+    max-width: 50vw;
+    max-height: 70vh;
+  }
+}
+
+/* ==============================
+   Altura máxima para selector de tipos de habitación
+   ============================== */
+#room-type-select .select-content {
+  max-height: 350px;
+}
+
+/* Asterisks */
+.placeholder-secondary-asterisk {
+  color: var(--secondary) !important;
+  font-weight: 300;
+}
+
+@media (max-width: 700px) {
+  .form-container {
+    max-width: 60vw;
+    min-width: 0;
+    min-height: 220px;
+    padding-bottom: 20px;
+    margin: 8px auto;
+  }
+}
+
+@media (max-width: 595px) {
+  .form-container {
+    max-width: 70vw;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 404px) {
+  .form-container {
+    max-height: 65vh;
+  }
+  .promo-mobile-text {
+    font-size: 14px;
+  }
+  .footer-logo-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .footer-logo {
+    margin-top: 20px;
+    width: 80px;
+  }
+} 

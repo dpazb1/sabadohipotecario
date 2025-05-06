@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Metadatos y configuración básica -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aporte Paz 2024 - 10% de tu pie</title>
+  <!-- Estilos y fuentes -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sección principal con fondo y formulario -->
+  <section class="main-section">
+    <div class="container">
+      <div class="main-content">
+        <!-- Texto promocional visible en móvil -->
+        <div class="promo-mobile-text">
+          <strong>¡Aprovecha el Aporte Paz 2024!</strong><br> Obtén hasta el 10% de pie que te falta.
+        </div>
+        <!-- Contenedor del formulario -->
+        <div class="form-container">
+          <h3 class="form-title">¡Inscríbete <span>aquí</span>!</h3>
+          <!-- Formulario de contacto -->
+          <form id="contactForm" novalidate>
+            <!-- Campo de nombre -->
+            <div class="form-group">
+              <input type="text" id="name" class="form-control" placeholder="Nombre *">
+              <div class="error-message">Por favor ingresa tu nombre completo</div>
+            </div>
+            <!-- Campo de RUT -->
+            <div class="form-group">
+              <input type="text" id="rut" class="form-control" placeholder="RUT *">
+              <div class="error-message">Por favor ingresa un RUT válido (ejemplo: 12.345.678-9)</div>
+            </div>
+            <!-- Campo de teléfono con selector de prefijo -->
+            <div class="form-group">
+              <div class="phone-input-container">
+                <div class="select-wrapper phone-prefix-wrapper">
+                  <div class="select-btn"><span class="select-btn-text">+56 9</span></div>
+                  <div class="select-content">
+                    <ul class="options">
+                      <li class="option" data-value="569">+56 9</li>
+                      <li class="option" data-value="562">+56 2</li>
+                    </ul>
+                  </div>
+                </div>
+                <input type="tel" id="phone" class="form-control" placeholder="Teléfono *" maxlength="9">
+              </div>
+              <div class="error-message">Por favor ingresa un número de teléfono válido</div>
+            </div>
+            <!-- Campo de correo electrónico -->
+            <div class="form-group">
+              <input type="email" id="email" class="form-control" placeholder="Correo electrónico *">
+              <div class="error-message">Por favor ingresa un correo electrónico válido</div>
+            </div>
+            <!-- Selector de proyectos con búsqueda -->
+            <div class="form-group">
+              <label>Proyecto de interés *</label>
+              <div class="select-wrapper" id="project-select">
+                <div class="select-btn">Selecciona uno o más proyectos</div>
+                <div class="select-content">
+                  <!-- Barra de búsqueda de proyectos -->
+                  <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Buscar proyecto...">
+                  </div>
+                  <!-- Lista de proyectos disponibles -->
+                  <ul class="options">
+                    <li class="option" data-value="all">Todos</li>
+                    <li class="option" data-value="caiquen">Caiquén <span class="comuna">Estación Central</span></li>
+                    <li class="option" data-value="carrion">Carrión <span class="comuna">Independencia</span></li>
+                    <li class="option" data-value="carrion2">Carrión 2 <span class="comuna">Independencia</span></li>
+                    <li class="option" data-value="colombia">Colombia 7664 <span class="comuna">La Florida</span></li>
+                    <li class="option" data-value="centenario">Edificio IV Centenario 1025 <span class="comuna">Las Condes</span></li>
+                    <li class="option" data-value="fernandez">Exequiel Fernández 3.430 <span class="comuna">Macul</span></li>
+                    <li class="option" data-value="livin">Livin <span class="comuna">Lo Barnechea</span></li>
+                    <li class="option" data-value="mosaic">Mosaic <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="art">Neo Art <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="pop">Pop Art <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="revelacion">Revelación <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="santa">Santa Elvira 46 <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="seminario">Seminario 850 <span class="comuna">Ñuñoa</span></li>
+                    <li class="option" data-value="seven">Seven <span class="comuna">Ñuñoa</span></li>
+                    <li class="option" data-value="teresa">Teresa Vial 1139 <span class="comuna">San Miguel</span></li>
+                    <li class="option" data-value="tradicion">Tradición <span class="comuna">Santiago Centro</span></li>
+                    <li class="option" data-value="zorzal">Zorzal <span class="comuna">Estación Central</span></li>
+                  </ul>
+                </div>
+                <!-- Contenedor para proyectos seleccionados -->
+                <div class="selected-projects"></div>
+              </div>
+              <div class="error-message">Por favor selecciona al menos un proyecto</div>
+            </div>
+            <!-- Selector de tipos de departamento (inicialmente oculto) -->
+            <div class="form-group" id="room-type-group" style="display: none;">
+              <label>Tipo de departamento *</label>
+              <div class="select-wrapper" id="room-type-select">
+                <div class="select-btn">Selecciona uno o más tipos</div>
+                <div class="select-content">
+                  <!-- Lista de tipos de departamento -->
+                  <ul class="options">
+                    <li class="option" data-value="home-studio">Home Studio</li>
+                    <li class="option" data-value="1-dorm">1 Dormitorio</li>
+                    <li class="option" data-value="2-dorm">2 Dormitorios</li>
+                    <li class="option" data-value="3-dorm">3 Dormitorios</li>
+                  </ul>
+                </div>
+                <!-- Contenedor para tipos seleccionados -->
+                <div class="selected-projects"></div>
+              </div>
+              <div class="error-message">Por favor selecciona al menos un tipo de departamento</div>
+            </div>
+            <!-- Checkbox de autorización -->
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms">
+              <label for="terms">Autorizo a Inmobiliaria PAZ a que me envíe información.</label>
+              <div class="error-message error-auth">Por favor acepta los términos y condiciones</div>
+            </div>
+            <!-- Botón de envío -->
+            <button type="submit" class="btn-submit">Enviar</button>
+            <!-- Texto legal -->
+            <p class="legal-text">
+              * Consulta bases legales con tu asesor inmobiliario en centro de ventas Las Condes, ubicado en Av. Las Condes 7430 o en cualquiera de nuestras salas de venta. Horario de lunes a viernes 11:00 a 14:00 y de 15:00 a 19:15 hrs. donde se entregará una copia de ellas.
+            </p>
+          </form>
+        </div>
+      </div>
+      <!-- Espaciador inferior -->
+      <div class="bottom-spacer"></div>
+    </div>
+  </section>
+  <!-- Logo de PAZ en el footer -->
+  <div class="footer-logo-container">
+    <a href="https://www.paz.cl" target="_blank"><img src="https://landing.paz.cl/images/logo-paz-blanco.svg" alt="Paz Corp Logo" class="footer-logo"></a>
+  </div>
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
